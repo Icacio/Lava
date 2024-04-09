@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 
 Route::get('/', function () {//home
@@ -27,7 +27,7 @@ Route::get('/new',function() {
     return view('editor',['titulo'=>null,'post'=>null]);
 })->middleware('auth');
 
-Route::post('/edit/{id}',[PostsController::class,'editPost'])->middleware('auth');
+Route::post('/edit/{id}',[PostController::class,'editPost'])->middleware('auth');
 Route::get('/edit/{id}',function ($id) {
 	$a = Post::find($id);
 	if (is_null($a)) {
@@ -36,14 +36,14 @@ Route::get('/edit/{id}',function ($id) {
 	return view('editor',['titulo'=>$a->titulo,'post'=>$a->contenido]);
 })->middleware('auth');
 
-Route::post('/new',[PostsController::class,'newPost'])->middleware('auth');
+Route::post('/new',[PostController::class,'newPost'])->middleware('auth');
 
-Route::get('profile',[PostsController::class,'showPosts'])->middleware('auth');
+Route::get('profile',[PostController::class,'showPosts'])->middleware('auth');
 
-Route::post('register',[UsersController::class,'createUser'])->middleware('guest');
+Route::post('register',[UserController::class,'createUser'])->middleware('guest');
 Route::get('register',function () {return view('register');})->middleware('guest');
 
-Route::post('login',[UsersController::class,'access'])->middleware('guest');
+Route::post('login',[UserController::class,'access'])->middleware('guest');
 Route::get('login',function () {return view('login');})->middleware('guest')->name('login');
 
-Route::get('logout',[UsersController::class,'logout']);
+Route::get('logout',[UserController::class,'logout']);
