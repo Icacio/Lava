@@ -1,0 +1,10 @@
+{
+    "editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"[yaml]": {
+		"editor.insertSpaces": false
+	},
+	"[dockercompose]": {
+		"editor.insertSpaces": false
+	}
+}

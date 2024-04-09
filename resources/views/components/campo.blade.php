@@ -9,7 +9,7 @@
 		value="{{ old($campo) }}"
 	@endif
 	required>
-	
+
 @error($campo)
 	<p class="text-red-500 text-xs mt-1"> {{$message}}</p>
 @else

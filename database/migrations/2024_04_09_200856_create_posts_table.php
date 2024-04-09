@@ -9,13 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+	public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
 			$table->string('titulo');
 			$table->text('contenido');
             $table->timestamps();
+			$table->foreignId('user_id')->constrained();
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('posts');
     }
 };
