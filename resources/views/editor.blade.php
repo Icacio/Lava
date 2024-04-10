@@ -6,7 +6,7 @@
 		<label for="contenido">
 			Contenido
 		</label><br>
-		<textarea id="contenido" class="text" cols="86" rows ="20" name="contenido">{{$contenido??old("contenido")}}</textarea>
+		<textarea id="contenido" class="text" cols="86" rows ="20" name="contenido">{{$post??old("contenido")}}</textarea>
 		@error("contenido")
 			<p class="text-red-500 text-xs mt-1"> {{$message}}</p>
 		@enderror

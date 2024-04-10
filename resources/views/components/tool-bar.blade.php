@@ -9,11 +9,9 @@
 	@unless(request()->is('new'))
 		<a href="/new"><b>Crear</b> un nuevo Post</a>
 	@endunless
-	@if(request()->is('post/*'))
-		{{request()->path()}}
-		
-		<a href="/edit/*">Edit post</a>	
-		
+	@if($propietario())
+		|| <a href="/edit/{{$postId()}}">Editar post</a>
+		|| <a href="/delete/{{$postId()}}">Borrar post</a>
 	@endif
 </p>
 @endauth

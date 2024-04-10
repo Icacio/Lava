@@ -28,8 +28,26 @@ class PostController extends Controller {
 
 	function editPost ($id) {
 		$post = Post::find($id);
+
 		if ($post->user_id==auth()->user()->id) {
-			
+			$a = request()->validate([
+				'titulo'=>'required|min:5|max:30',
+				'contenido'=>'required|min:5|max:5000'
+			]);
+			$post->titulo=$a['titulo'];
+			$post->contenido=$a['contenido'];
+			$post->save();
+			session()->flash('success','El post ha sido modificado correctamente.');
+			return redirect("/post/$id");
+		} else {
+			return redirect('/profile');
 		}
+	}
+
+	function deletePost() {
+		$a = request()->validate(['postId'=>'required']);
+		Post::where('id',$a['postId'])->delete();
+		session()->flash('success','El post ha sido eliminado correctamente.');
+		return redirect("/profile");
 	}
 }
