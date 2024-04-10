@@ -1,4 +1,4 @@
-@props(['campo','type' => 'text'])
+@props(['campo','type' => 'text','b'=> false])
 
 <label for={{ $campo }}>{{ $slot }}</label>
 <br>
@@ -6,7 +6,7 @@
 	name={{$campo}}
 	id = {{$campo}}
 	@if($type!='password')
-		value="{{ old($campo) }}"
+		value="{{$b?$b:old($campo)}}"
 	@endif
 	required>
 
